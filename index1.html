@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">  
+    <title>Custom Select Menu in JavaScript | CodingNepal</title>
+    <link rel="stylesheet" href="style2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Iconscout Link For Icons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="select-btn">
+        <span id="sp">Select Country</span>
+        <i class="uil uil-angle-down"></i>
+      </div>
+      <div class="content">
+        <div class="search">
+          <i class="uil uil-search"></i>
+          <input spellcheck="false" type="text" placeholder="Search">
+        </div>
+        <ul class="options"></ul>
+      </div>
+    </div>
+    <script>
+	    var wrapper=document.querySelector(".wrapper")
+	var selectBtn=document.querySelector(".select-btn")
+	var searchInput=document.querySelector("input")
+	var options=document.querySelector(".options")
+	var spa=document.getElementById("sp")
+	let countries = ["Afghanistan", "Algeria", "Argentina", "Australia", "Bangladesh", "Belgium", "Bhutan",
+                 "Brazil", "Canada", "China", "Denmark", "Ethiopia", "Finland", "France", "Germany",
+                 "Hungary", "Iceland", "India", "Indonesia", "Iran", "Italy", "Japan", "Malaysia",
+                 "Maldives", "Mexico", "Morocco", "Nepal", "Netherlands", "Nigeria", "Norway", "Pakistan",
+                 "Peru", "Russia", "Romania", "South Africa", "Spain", "Sri Lanka", "Sweden", "Switzerland",
+                 "Thailand", "Turkey", "Uganda", "Ukraine", "United States",]
+	selectBtn.addEventListener("click",()=>{
+	     wrapper.classList.add("active")
+	})
+	function addcountry(){
+	     countries.forEach(function(country){
+		      let li=`<li onclick="select(this)">${country}</li>`
+              options.insertAdjacentHTML("beforeend", li);
+			 console.log(li)
+		 })	 
+	}
+	addcountry()
+	function select(element){
+	       wrapper.classList.remove("active")
+	      <!-- selectBtn.firstElementChild.textContent=element.textContent -->
+		  sp.textContent=element.textContent
+	}
+	searchInput.addEventListener("keyup",()=>{
+	           let arr=[]
+	           let searchvalue=searchInput.value.toLowerCase()
+			  arr=countries.filter(function(data){
+			     return data.toLowerCase().startsWith(searchvalue)
+				   console.log(arr)
+			   }).map(data =>`<li onclick="select(this)">${data}</li>`).join("")
+                options.innerHTML=arr
+	})
+	</script>
+        
+  </body>
+</html>
